@@ -1,0 +1,52 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    /* padding-top: 10px; */
+    padding-bottom: 40px;
+}
+
+.jumbotron {
+    background-image: url("../images/header.jpg");
+    background-size: cover;
+    height: auto;
+}
+
+element.style {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+}
+
+img {
+    vertical-align: middle;]
+	display: inline-block;
+	float: left;
+	margin: 10px;
+}
+
+#sticker {
+    /* background: #bada55; */
+    color: white;
+    width: 300px;
+    font-family: Droid Sans;
+    font-size: 40px;
+    line-height: 1.6em;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    border-radius: 50px;
+    float: right;
+}
+
+.btn {
+    margin: 10px;
+    opacity: 1;
+}
+
+#myButton:hover{
+    
+}
