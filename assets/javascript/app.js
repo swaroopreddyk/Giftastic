@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    var transformerArray = ["optimus prime", "bumble bee", "megatron", "iron hide","starscream","frenzy","blackout"];
+    var transformerArray = ["optimus prime", "bumble bee", "megatron", "iron hide", "starscream", "frenzy", "blackout"];
     var apiKey = "QZ1jQcmXzBq2MNAWVrKrvKondiM3XpJD";
     var controller = new ScrollMagic.Controller();
 
@@ -55,7 +55,7 @@ $(document).ready(() => {
         }
         // Looping through each result item
         results.forEach((gifObject, index) => {
-            console.log(gifObject);
+            // console.log(gifObject);
             var showDiv = $("<div>");
             var showImage = $("<img>");
             var downloadImage = $("<a>")
@@ -67,24 +67,37 @@ $(document).ready(() => {
             showImage.addClass("image");
             showDiv.append(showImage);
 
-            var showRating = $("<p>").text("Rating " + gifObject.rating);
+            var showRating = $('<p class="text-success">').text("Rating: " + gifObject.rating.trim().toUpperCase());
             showDiv.append(showRating);
 
-            downloadImage.attr("href", gifObject.images.fixed_height.url);
-            downloadImage.addClass("btn btn-info");
-            downloadImage.attr("download", "gifTastic_Download.gif");
+            downloadImage.attr("data-src", gifObject.images.fixed_height.url);
+            downloadImage.addClass("btn btn-info downloadGIFButton");
+            // downloadImage.attr("download", "gifTastic_Download.gif");
             downloadImage.text("Download GIF");
             // showDiv.append(downloadImage);
-            
+
             $("#gifs-view").prepend(showDiv);
         })
     }
+
+    $(document).on('click', '.downloadGIFButton', () => {
+        let src = $(this).data("src");
+        console.log(src);
+        download(src, "giftastic.gif", "image/gif");
+        // var x = new XMLHttpRequest();
+        // x.open("GET", $(this).attr("href"), true);
+        // x.responseType = 'blob';
+        // x.onload = function (e) {
+        //     download(x.response, "giftastic.gif", "image/gif");
+        // }
+        // x.send();
+    });
 
     function renderButtons() {
         $("#buttons-view").empty();
 
         // Looping through the array of transformers
-        transformerArray.forEach( (transformerMachine) => {
+        transformerArray.forEach((transformerMachine) => {
             var a = $("<button>");
             a.addClass("btn btn-light transformer-btn");
             a.attr("data-name", transformerMachine);
@@ -94,8 +107,10 @@ $(document).ready(() => {
     }
 
 
-    function initialize(){
-        var scene = new ScrollMagic.Scene({triggerElement: "#myButton"});
+    function initialize() {
+        var scene = new ScrollMagic.Scene({
+            triggerElement: "#myButton"
+        });
         scene.setPin("#myButton");
         scene.addTo(controller);
         // Calling the renderButtons function to display the intial buttons
@@ -104,6 +119,6 @@ $(document).ready(() => {
     // Adding a click event listener to all elements with a class of "movie-btn"
     $(document).on("click", ".transformer-btn", displayTransformerInfo);
 
-    
+
     initialize();
 });
