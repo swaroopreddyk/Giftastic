@@ -19,6 +19,7 @@ $(document).ready(() => {
             transformerArray.push(transformer);
         }
         renderButtons();
+        $('#transformer-name').val("");
         //Hide the input modal once we pushed the transformer into array
         $('#addModal').hide();
     })
